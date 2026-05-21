@@ -920,9 +920,43 @@
       transition: opacity 0.7s ease, transform 0.7s ease;
     }
 
+    @media (prefers-reduced-motion: reduce) {
+      .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+    }
+
     .reveal.visible {
       opacity: 1;
-      transform: translateY(0);
+      transform: none;
+    }
+
+    /* Tall cards (mini projects) — never clip content on mobile GPUs */
+    .project-card.mini-projects-card {
+      overflow: visible;
+      grid-template-columns: 1fr;
+    }
+
+    .project-card.mini-projects-card .project-badge {
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    @media (min-width: 901px) {
+      .project-card.mini-projects-card {
+        grid-template-columns: 1fr auto;
+      }
+      .project-card.mini-projects-card .project-badge {
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: flex-start;
+        margin-top: 0;
+      }
     }
 
     /* ── CURSOR ── */
@@ -1653,7 +1687,7 @@
         </div>
 
         <!-- MINI PROJECTS CARD -->
-        <div class="project-card reveal" style="--card-glow:rgba(167,139,250,0.05);">
+        <div class="project-card mini-projects-card reveal" style="--card-glow:rgba(167,139,250,0.05);">
           <div>
             <div class="project-number" style="color:var(--accent2)">06 · Mini Projects</div>
             <div class="project-name">Side Builds</div>
@@ -2146,16 +2180,47 @@
     const counters = document.querySelectorAll('.stat-num[data-count]');
     let countersAnimated = false;
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
+    function markRevealVisible(el) {
+      if (!el.classList.contains('visible')) {
+        el.classList.add('visible');
+      }
+    }
+
+    function checkRevealsInViewport() {
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      reveals.forEach(el => {
+        if (el.classList.contains('visible')) return;
+        const rect = el.getBoundingClientRect();
+        if (rect.top < vh && rect.bottom > 0) {
+          markRevealVisible(el);
         }
       });
-    }, { threshold: 0.15 });
+    }
 
-    reveals.forEach(el => observer.observe(el));
+    const revealObserver = typeof IntersectionObserver !== 'undefined'
+      ? new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting || entry.intersectionRatio > 0) {
+              markRevealVisible(entry.target);
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: [0, 0.05, 0.15],
+          rootMargin: '0px 0px 80px 0px'
+        })
+      : null;
+
+    reveals.forEach(el => {
+      if (revealObserver) revealObserver.observe(el);
+    });
+
+    window.addEventListener('scroll', checkRevealsInViewport, { passive: true });
+    window.addEventListener('resize', checkRevealsInViewport, { passive: true });
+    window.addEventListener('load', checkRevealsInViewport);
+    checkRevealsInViewport();
+    setTimeout(checkRevealsInViewport, 400);
+    setTimeout(checkRevealsInViewport, 1500);
 
     const skillObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
