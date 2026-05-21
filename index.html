@@ -158,30 +158,6 @@
       padding: 8rem 2rem 4rem;
     }
 
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(79,158,255,0.1);
-      border: 1px solid rgba(79,158,255,0.25);
-      border-radius: 100px;
-      padding: 0.35rem 1rem;
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 2rem;
-      animation: fadeSlideDown 0.8s ease both;
-    }
-
-    .hero-badge .dot {
-      width: 6px; height: 6px;
-      background: var(--accent3);
-      border-radius: 50%;
-      animation: pulse 2s infinite;
-    }
-
     .hero-name {
       font-size: clamp(3rem, 8vw, 7rem);
       font-weight: 900;
@@ -527,35 +503,6 @@
       font-family: 'JetBrains Mono', monospace;
     }
 
-    .skill-bar-item {
-      margin-bottom: 0.9rem;
-    }
-
-    .skill-bar-header {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 0.35rem;
-      font-size: 0.85rem;
-    }
-
-    .skill-bar-name { font-weight: 500; }
-    .skill-bar-pct { color: var(--accent); font-weight: 600; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; }
-
-    .skill-bar-track {
-      height: 4px;
-      background: var(--surface2);
-      border-radius: 4px;
-      overflow: hidden;
-    }
-
-    .skill-bar-fill {
-      height: 100%;
-      border-radius: 4px;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      width: 0;
-      transition: width 1.2s cubic-bezier(0.16,1,0.3,1);
-    }
-
     .tags-cloud {
       display: flex;
       flex-wrap: wrap;
@@ -741,6 +688,76 @@
       white-space: nowrap;
     }
 
+    .smartq-platform {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, rgba(79,158,255,0.08), rgba(167,139,250,0.06));
+      border: 1px solid rgba(79,158,255,0.22);
+      border-radius: 16px;
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .smartq-platform-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      margin-bottom: 0.6rem;
+    }
+
+    .smartq-platform-label a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(79,158,255,0.35);
+    }
+
+    .smartq-platform-label a:hover { color: #fff; border-color: var(--accent); }
+
+    .smartq-platform-desc {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+      max-width: 72ch;
+    }
+
+    .smartq-platform-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .smartq-platform-tags span {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.3rem 0.65rem;
+      border-radius: 100px;
+      background: rgba(79,158,255,0.1);
+      color: var(--accent);
+      border: 1px solid rgba(79,158,255,0.22);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .about-text a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(79,158,255,0.35);
+    }
+
+    .about-text a:hover { color: #fff; border-color: var(--accent); }
+
+    .timeline-company a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(79,158,255,0.35);
+    }
+
+    .timeline-company a:hover { color: var(--accent); }
+
     /* ── EXPERIENCE ── */
     #experience {
       padding: 6rem 2rem;
@@ -813,14 +830,22 @@
     .timeline-points li {
       font-size: 0.85rem;
       color: var(--muted);
-      display: flex;
-      gap: 0.6rem;
+      line-height: 1.65;
+      padding-left: 1.35rem;
+      position: relative;
     }
 
     .timeline-points li::before {
       content: '→';
       color: var(--accent);
-      flex-shrink: 0;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    .timeline-points li strong {
+      color: var(--text);
+      font-weight: 600;
     }
 
     /* ── CONTACT ── */
@@ -1174,10 +1199,6 @@
 
   <!-- HERO -->
   <section id="hero">
-    <div class="hero-badge">
-      <span class="dot"></span>
-      Available for Opportunities
-    </div>
     <h1 class="hero-name">Rohit Pachori</h1>
     <p class="hero-title">Senior Software Engineer · <span id="typewriter-target"></span></p>
     <p class="hero-desc">
@@ -1195,7 +1216,7 @@
       </div>
       <div class="stat">
         <span class="stat-num" data-count="40">0</span>
-        <span class="stat-label">% Cost Reduction</span>
+        <span class="stat-label">Cost Reduction</span>
       </div>
       <div class="stat">
         <span class="stat-num" data-count="5">0</span>
@@ -1226,10 +1247,10 @@
           that run in enterprise environments across the globe.
         </p>
         <p>
-          At <strong>SmartQ</strong>, I led the migration from Native Kotlin to Flutter — cutting 
+          At <strong><a href="https://www.thesmartq.com/" target="_blank" rel="noopener noreferrer">SmartQ</a></strong> (Compass Group's technology arm), I led the migration from Native Kotlin to Flutter — cutting 
           maintenance costs by 40% while shipping features faster. I've built real-time display 
-          systems, self-service kiosk platforms, and integrated global payment gateways used by 
-          millions of users in canteen/restaurant environments.
+          systems, self-service kiosk platforms, and integrated global payment gateways deployed across 
+          <strong>400+ sites</strong> and <strong>14+ countries</strong> in corporate and institutional dining.
         </p>
         <p>
           I'm an <strong>advanced practitioner of AI-Assisted Development</strong> — I actively 
@@ -1375,41 +1396,21 @@
     <div class="skills-grid">
       <div class="skill-group reveal">
         <div class="skill-group-title">Mobile Development</div>
-        <div class="skill-bar-item">
-          <div class="skill-bar-header"><span class="skill-bar-name">Kotlin / Android</span><span class="skill-bar-pct">95%</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="95"></div></div>
-        </div>
-        <div class="skill-bar-item">
-          <div class="skill-bar-header"><span class="skill-bar-name">Jetpack Compose</span><span class="skill-bar-pct">90%</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div>
-        </div>
-        <div class="skill-bar-item">
-          <div class="skill-bar-header"><span class="skill-bar-name">Flutter / Dart</span><span class="skill-bar-pct">88%</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="88"></div></div>
-        </div>
-        <div class="skill-bar-item">
-          <div class="skill-bar-header"><span class="skill-bar-name">Java</span><span class="skill-bar-pct">80%</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="80"></div></div>
+        <div class="tags-cloud">
+          <span class="tag">Kotlin / Android</span>
+          <span class="tag">Jetpack Compose</span>
+          <span class="tag">Flutter / Dart</span>
+          <span class="tag">Java</span>
         </div>
       </div>
 
       <div class="skill-group reveal">
         <div class="skill-group-title">Architecture & Patterns</div>
-        <div class="skill-bar-item">
-          <div class="skill-bar-header"><span class="skill-bar-name">Clean Architecture</span><span class="skill-bar-pct">92%</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="92"></div></div>
-        </div>
-        <div class="skill-bar-item">
-          <div class="skill-bar-header"><span class="skill-bar-name">MVVM / MVI</span><span class="skill-bar-pct">90%</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div>
-        </div>
-        <div class="skill-bar-item">
-          <div class="skill-bar-header"><span class="skill-bar-name">BLoC / Provider</span><span class="skill-bar-pct">85%</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div>
-        </div>
-        <div class="skill-bar-item">
-          <div class="skill-bar-header"><span class="skill-bar-name">TDD / BDD</span><span class="skill-bar-pct">82%</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="82"></div></div>
+        <div class="tags-cloud">
+          <span class="tag">Clean Architecture</span>
+          <span class="tag">MVVM / MVI</span>
+          <span class="tag">BLoC / Provider</span>
+          <span class="tag">TDD / BDD</span>
         </div>
       </div>
 
@@ -1461,6 +1462,21 @@
 
       <div class="projects-grid">
 
+        <div class="smartq-platform reveal">
+          <p class="smartq-platform-label">Enterprise platform · <a href="https://www.thesmartq.com/" target="_blank" rel="noopener noreferrer">SmartQ</a></p>
+          <p class="smartq-platform-desc">
+            Technology arm of <strong>Compass Group</strong> — the world's largest food service company — serving <strong>400+ clients</strong> across <strong>14 countries</strong>.
+            TDS, IMD, and Kiosk are part of SmartQ's digital F&B stack (Time2eat ecosystem), powering corporates, universities, live events, and food courts — including the UK market.
+          </p>
+          <div class="smartq-platform-tags">
+            <span>Compass Group</span>
+            <span>14 Countries</span>
+            <span>400+ Clients</span>
+            <span>B2B F&amp;B</span>
+            <span>UK Market</span>
+          </div>
+        </div>
+
         <!-- TDS -->
         <div class="project-card tds reveal">
           <div>
@@ -1468,9 +1484,9 @@
             <div class="project-name">TDS — Real-Time Token Display</div>
             <div class="project-tagline">Live order status on large-format restaurant displays</div>
             <p class="project-desc">
-              A Firebase-powered real-time token display system live across <strong>1000s of UK sites</strong> and deployed in 14+ countries. Displays order preparation status, ready tokens, and dynamic 
-              content — all updating live without manual refresh. Optimised for high-traffic restaurant 
-              and canteen environments with country-specific configurations.
+              A Firebase-powered real-time token display system live across <strong>400+ sites</strong> in the UK and <strong>14+ countries</strong>.
+              Reduces queue confusion in high-traffic canteens — order preparation status and ready tokens update live for staff and customers without manual refresh.
+              Optimised for enterprise restaurant environments with country-specific configurations.
             </p>
             <ul class="project-features">
               <li>Real-time Firebase order state sync</li>
@@ -1493,8 +1509,8 @@
           </div>
           <div class="project-badge">
             <div class="badge-icon">📺</div>
-            <span class="status-badge">● Live in UK Market</span>
-            <span class="countries-badge">1000s of Sites</span>
+            <span class="status-badge">● Compass Group · Global</span>
+            <span class="countries-badge">400+ Sites · 14+ Countries</span>
           </div>
         </div>
 
@@ -1505,7 +1521,9 @@
             <div class="project-name">IMD — Intelligent Menu Display</div>
             <div class="project-tagline">Multi-restaurant live menu on big-screen displays</div>
             <p class="project-desc">
-              A large-format display system live across <strong>1000s of UK sites</strong>, showing live menu items across multiple restaurants simultaneously. Real-time OFS (Order Fulfillment System) integration ensures menu availability is always accurate. Powered by an intelligent banner engine that handles rich media — video, Lottie animations, and images — on a scheduled rotation.
+              A large-format display system live across <strong>400+ sites</strong> in the UK and <strong>14+ countries</strong>, showing live menu items across multiple restaurants simultaneously.
+              Real-time OFS (Order Fulfillment System) sync keeps boards accurate when items sell out — no manual menu board updates.
+              Powered by an intelligent banner engine for video, Lottie animations, and images on a scheduled rotation.
             </p>
             <ul class="project-features">
               <li>Real-time OFS menu updates</li>
@@ -1528,8 +1546,8 @@
           </div>
           <div class="project-badge">
             <div class="badge-icon">🍽</div>
-            <span class="status-badge">● Live in UK Market</span>
-            <span class="countries-badge">1000s of Sites</span>
+            <span class="status-badge">● Compass Group · Global</span>
+            <span class="countries-badge">400+ Sites · 14+ Countries</span>
           </div>
         </div>
 
@@ -1540,9 +1558,8 @@
             <div class="project-name">Smart Kiosk — Global Ordering Platform</div>
             <div class="project-tagline">End-to-end self-service ordering with payments</div>
             <p class="project-desc">
-              A complete self-service kiosk ecosystem live across <strong>hundreds of sites in the UK market</strong> and 14+ countries. Handles the full ordering journey — menu browsing, cart management, 
-              payment processing, order placement, and receipt printing — with country-specific tax 
-              engines, automated closure logic, and deep hardware integration (printers, scanners, payment terminals).
+              A complete self-service kiosk ecosystem live across <strong>400+ sites</strong> in the UK and <strong>14+ countries</strong> — part of SmartQ's Time2eat digital stack for Compass Group cafeteria deployments.
+              Full self-service journey: browse → pay (Freedom Pay / Pine Labs) → print receipt, with country-specific tax engines, automated closure logic, and deep hardware integration (printers, scanners, payment terminals).
             </p>
             <ul class="project-features">
               <li>Live menu with real-time availability</li>
@@ -1572,8 +1589,8 @@
           </div>
           <div class="project-badge">
             <div class="badge-icon">🤖</div>
-            <span class="status-badge">● Live in UK Market</span>
-            <span class="countries-badge">1000s of Sites · 14+ Countries</span>
+            <span class="status-badge">● Compass Group · Global</span>
+            <span class="countries-badge">400+ Sites · 14+ Countries</span>
           </div>
         </div>
 
@@ -1672,7 +1689,7 @@
                 <div style="font-size:1.25rem;margin-bottom:0.5rem;">🧠</div>
                 <div class="mini-project-head">
                   <div class="mini-project-title">Dementia Care (Aumetra)</div>
-                  <span class="mini-project-year">2025</span>
+                  <span class="mini-project-year">2022</span>
                 </div>
                 <div style="font-size:0.75rem;color:var(--muted);line-height:1.6;margin-bottom:0.75rem;">Flutter care-companion app — polls remote vitals (SpO2, BP, pressure) every 10s and plays condition-aware therapeutic audio. Local phone/PIN auth via SQLite. IoT health API from Aislyn Tech.</div>
                 <div style="display:flex;flex-wrap:wrap;gap:0.3rem;">
@@ -1687,7 +1704,7 @@
                 <div style="font-size:1.25rem;margin-bottom:0.5rem;">🅿️</div>
                 <div class="mini-project-head">
                   <div class="mini-project-title">QR Smart Parking</div>
-                  <span class="mini-project-year">2025</span>
+                  <span class="mini-project-year">2021</span>
                 </div>
                 <div style="font-size:0.75rem;color:var(--muted);line-height:1.6;margin-bottom:0.75rem;">Native Android Java — QR scan to park, 4 live slots (10s auto-refresh), prepaid wallet, licence-plate auth. Backend: aislyn.in/QRPARK.</div>
                 <div style="display:flex;flex-wrap:wrap;gap:0.3rem;">
@@ -1701,7 +1718,7 @@
                 <div style="font-size:1.25rem;margin-bottom:0.5rem;">👁️</div>
                 <div class="mini-project-head">
                   <div class="mini-project-title">Object Detection (YOLOv8)</div>
-                  <span class="mini-project-year">2025</span>
+                  <span class="mini-project-year">2022</span>
                 </div>
                 <div style="font-size:0.75rem;color:var(--muted);line-height:1.6;margin-bottom:0.75rem;">Kotlin accessibility app — real-time YOLOv8 on-device detection via TensorFlow Lite + CameraX, bounding-box overlay, distance/position TTS guidance for blind users. Room auth, GPU/CPU toggle.</div>
                 <div style="display:flex;flex-wrap:wrap;gap:0.3rem;">
@@ -1716,7 +1733,7 @@
                 <div style="font-size:1.25rem;margin-bottom:0.5rem;">🐕</div>
                 <div class="mini-project-head">
                   <div class="mini-project-title">Dog Health (Neck Band)</div>
-                  <span class="mini-project-year">2025</span>
+                  <span class="mini-project-year">2021</span>
                 </div>
                 <div style="font-size:0.75rem;color:var(--muted);line-height:1.6;margin-bottom:0.75rem;">Flutter pet-health companion — live heart rate &amp; temperature from IoT neckband API, GPS tracking (Google Maps), vet directory, grooming &amp; reports. Firebase Auth + Google Sign-In, SQLite local storage.</div>
                 <div style="display:flex;flex-wrap:wrap;gap:0.3rem;">
@@ -1731,7 +1748,7 @@
                 <div style="font-size:1.25rem;margin-bottom:0.5rem;">🎓</div>
                 <div class="mini-project-head">
                   <div class="mini-project-title">Aislyn Titus Attendance</div>
-                  <span class="mini-project-year">2025</span>
+                  <span class="mini-project-year">2023</span>
                 </div>
                 <div style="font-size:0.75rem;color:var(--muted);line-height:1.6;margin-bottom:0.75rem;">Dual-role Flutter school app (student &amp; staff) — table-calendar attendance, leave requests, homework upload/download, holidays, notifications via OneSignal + local alerts. Dio/HTTP to live PHP REST backend.</div>
                 <div style="display:flex;flex-wrap:wrap;gap:0.3rem;">
@@ -1746,7 +1763,7 @@
                 <div style="font-size:1.25rem;margin-bottom:0.5rem;">👤</div>
                 <div class="mini-project-head">
                   <div class="mini-project-title">Face Recognition</div>
-                  <span class="mini-project-year">2025</span>
+                  <span class="mini-project-year">2023</span>
                 </div>
                 <div style="font-size:0.75rem;color:var(--muted);line-height:1.6;margin-bottom:0.75rem;">Flutter ML app — register faces from camera/gallery, real-time detection &amp; recognition via Google ML Kit, spoken TTS feedback, Hive local face database for offline matching.</div>
                 <div style="display:flex;flex-wrap:wrap;gap:0.3rem;">
@@ -1927,15 +1944,16 @@
       <div class="timeline-item reveal">
         <div class="timeline-dot"></div>
         <div class="timeline-date">May 2022 – Present</div>
-        <div class="timeline-company">SmartQ (Bottle Lab Technology Pvt Ltd)</div>
+        <div class="timeline-company"><a href="https://www.thesmartq.com/" target="_blank" rel="noopener noreferrer">SmartQ</a> (Bottle Lab Technologies Pvt Ltd)</div>
         <div class="timeline-role">Senior Software Developer</div>
         <ul class="timeline-points">
+          <li>Shipped display &amp; kiosk products for <strong>Compass Group</strong> cafeteria operations worldwide</li>
           <li>Architected global Self-Service Kiosk Ecosystem — 14+ countries, complex tax engines, auto-closure</li>
           <li>Led Native Kotlin → Flutter migration achieving 40% maintenance cost reduction</li>
           <li>Built Real-Time Token Display System (TDS) using Firebase for high-traffic restaurant environments</li>
           <li>Integrated thermal receipt printers (Sunmi/Zebra) and barcode/QR scanners with custom hardware SDKs</li>
           <li>Integrated global payment terminals — Freedom Pay &amp; Pine Labs — for seamless card/contactless transactions</li>
-          <li>TDS, IMD and Kiosk are live across <strong>1000s of UK sites</strong> and 14+ countries worldwide</li>
+          <li>TDS, IMD &amp; Kiosk live across <strong>400+ sites</strong> in <strong>14+ countries</strong> (corporates, universities, events &amp; food courts)</li>
           <li>Developed IMD — live multi-restaurant menu display with intelligent media banner system</li>
         </ul>
       </div>
@@ -2114,7 +2132,6 @@
 
     // ── REVEAL ON SCROLL ──
     const reveals = document.querySelectorAll('.reveal');
-    const skillFills = document.querySelectorAll('.skill-bar-fill');
     const counters = document.querySelectorAll('.stat-num[data-count]');
     let countersAnimated = false;
 
@@ -2159,17 +2176,6 @@
     checkRevealsInViewport();
     setTimeout(checkRevealsInViewport, 400);
     setTimeout(checkRevealsInViewport, 1500);
-
-    const skillObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.width = entry.target.dataset.width + '%';
-          skillObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.3 });
-
-    skillFills.forEach(el => skillObserver.observe(el));
 
     const counterObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
