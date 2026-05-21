@@ -983,6 +983,34 @@
     .project-card.pm .project-features li::before { color: var(--accent4); }
     .project-card.pm .tech-tag { background: rgba(251,146,60,0.08); border-color: rgba(251,146,60,0.2); color: var(--accent4); }
 
+    .project-card.aislyn { --card-glow: rgba(52,211,153,0.05); }
+    .project-card.aislyn .project-number { color: var(--accent3); }
+    .project-card.aislyn .project-features li::before { color: var(--accent3); }
+    .project-card.aislyn .tech-tag { background: rgba(52,211,153,0.08); border-color: rgba(52,211,153,0.2); color: var(--accent3); }
+
+    .mini-project-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      margin-bottom: 0.3rem;
+    }
+    .mini-project-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .mini-project-year {
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: var(--accent2);
+      background: rgba(167,139,250,0.1);
+      border: 1px solid rgba(167,139,250,0.25);
+      border-radius: 6px;
+      padding: 0.15rem 0.45rem;
+      flex-shrink: 0;
+    }
+
     /* Floating particles */
     .particle {
       position: fixed;
@@ -1049,7 +1077,7 @@
         <span class="stat-label">% Cost Reduction</span>
       </div>
       <div class="stat">
-        <span class="stat-num" data-count="4">0</span>
+        <span class="stat-num" data-count="5">0</span>
         <span class="stat-label">Major Projects</span>
       </div>
     </div>
@@ -1429,10 +1457,53 @@
           </div>
         </div>
 
+        <!-- AISLYNTECH -->
+        <div class="project-card aislyn reveal">
+          <div>
+            <div class="project-number">04 · Flutter E-Commerce + Operations App</div>
+            <div class="project-name">AislynTech — Engineering Projects Platform</div>
+            <div class="project-tagline">Marketplace + student & employee portals in one Flutter app</div>
+            <p class="project-desc">
+              A full-featured cross-platform Flutter app for <strong>Aislyn Technologies</strong> — combining an engineering-project marketplace, student project tracker, and employee operations portal. Integrates <strong>Razorpay</strong> live payments, <strong>Google Sign-In</strong> via Firebase Auth, embedded YouTube demos, Syncfusion PDF viewer, and REST APIs across two backend domains. Ships on Android & iOS from a single Dart codebase.
+            </p>
+            <ul class="project-features">
+              <li>E-commerce: 19 project categories</li>
+              <li>Cart, wishlist &amp; Razorpay checkout</li>
+              <li>Google Sign-In via Firebase Auth</li>
+              <li>Embedded YouTube product demos</li>
+              <li>Student portal — project &amp; payment tracking</li>
+              <li>Employee portal — daily status updates</li>
+              <li>Internship &amp; custom-project request forms</li>
+              <li>Syncfusion PDF topic viewer</li>
+              <li>Shimmer loading &amp; 5-min cache layer</li>
+              <li>Light/dark theme with Provider</li>
+              <li>MVVM + Repository architecture</li>
+              <li>Glassmorphism UI with Lottie animations</li>
+            </ul>
+            <div class="project-tech">
+              <span class="tech-tag">Flutter</span>
+              <span class="tech-tag">Dart</span>
+              <span class="tech-tag">Firebase Auth</span>
+              <span class="tech-tag">Razorpay</span>
+              <span class="tech-tag">Google Sign-In</span>
+              <span class="tech-tag">Provider</span>
+              <span class="tech-tag">REST APIs</span>
+              <span class="tech-tag">YouTube Player</span>
+              <span class="tech-tag">Syncfusion PDF</span>
+              <span class="tech-tag">MVVM</span>
+            </div>
+          </div>
+          <div class="project-badge">
+            <div class="badge-icon">🎓</div>
+            <span class="status-badge">● Shipped</span>
+            <span class="countries-badge">Android &amp; iOS</span>
+          </div>
+        </div>
+
         <!-- PASSWORD MANAGER -->
         <div class="project-card pm reveal">
           <div>
-            <div class="project-number">04 · Personal Project</div>
+            <div class="project-number">05 · Personal Project</div>
             <div class="project-name">SecureVault — Password Manager</div>
             <div class="project-tagline">Cross-platform encrypted credential manager</div>
             <p class="project-desc">
@@ -1464,6 +1535,261 @@
             <div class="badge-icon">🔐</div>
             <span class="status-badge">● Shipped</span>
             <span class="countries-badge">Open Source</span>
+          </div>
+        </div>
+
+        <!-- MINI PROJECTS CARD -->
+        <div class="project-card reveal" style="--card-glow:rgba(167,139,250,0.05);">
+          <div>
+            <div class="project-number" style="color:var(--accent2)">06 · Mini Projects</div>
+            <div class="project-name">Side Builds</div>
+            <div class="project-tagline">Smaller apps shipped end-to-end — real features, real backends</div>
+            <p class="project-desc">A collection of focused side projects built to solve real problems, each with a live backend, hardware or native integration, and shipped to working APKs. Years show last source-code edit (newest first).</p>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.5rem;">
+
+              <div style="background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:1.25rem;">
+                <div style="font-size:1.25rem;margin-bottom:0.5rem;">🧠</div>
+                <div class="mini-project-head">
+                  <div class="mini-project-title">Dementia Care (Aumetra)</div>
+                  <span class="mini-project-year">2025</span>
+                </div>
+                <div style="font-size:0.75rem;color:var(--muted);line-height:1.6;margin-bottom:0.75rem;">Flutter care-companion app — polls remote vitals (SpO2, BP, pressure) every 10s and plays condition-aware therapeutic audio. Local phone/PIN auth via SQLite. IoT health API from Aislyn Tech.</div>
+                <div style="display:flex;flex-wrap:wrap;gap:0.3rem;">
+                  <span class="tech-tag">Flutter</span>
+                  <span class="tech-tag">audioplayers</span>
+                  <span class="tech-tag">SQLite</span>
+                  <span class="tech-tag">IoT API</span>
+                </div>
+              </div>
+
+              <div style="background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:1.25rem;">
+                <div style="font-size:1.25rem;margin-bottom:0.5rem;">🅿️</div>
+                <div class="mini-project-head">
+                  <div class="mini-project-title">QR Smart Parking</div>
+                  <span class="mini-project-year">2025</span>
+                </div>
+                <div style="font-size:0.75rem;color:var(--muted);line-height:1.6;margin-bottom:0.75rem;">Native Android Java — QR scan to park, 4 live slots (10s auto-refresh), prepaid wallet, licence-plate auth. Backend: aislyn.in/QRPARK.</div>
+                <div style="display:flex;flex-wrap:wrap;gap:0.3rem;">
+                  <span class="tech-tag" style="background:rgba(52,211,153,0.08);border-color:rgba(52,211,153,0.2);color:var(--accent3)">Android Java</span>
+                  <span class="tech-tag" style="background:rgba(52,211,153,0.08);border-color:rgba(52,211,153,0.2);color:var(--accent3)">ZXing QR</span>
+                  <span class="tech-tag" style="background:rgba(52,211,153,0.08);border-color:rgba(52,211,153,0.2);color:var(--accent3)">Retrofit</span>
+                </div>
+              </div>
+
+              <div style="background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:1.25rem;">
+                <div style="font-size:1.25rem;margin-bottom:0.5rem;">👁️</div>
+                <div class="mini-project-head">
+                  <div class="mini-project-title">Object Detection (YOLOv8)</div>
+                  <span class="mini-project-year">2025</span>
+                </div>
+                <div style="font-size:0.75rem;color:var(--muted);line-height:1.6;margin-bottom:0.75rem;">Kotlin accessibility app — real-time YOLOv8 on-device detection via TensorFlow Lite + CameraX, bounding-box overlay, distance/position TTS guidance for blind users. Room auth, GPU/CPU toggle.</div>
+                <div style="display:flex;flex-wrap:wrap;gap:0.3rem;">
+                  <span class="tech-tag">Kotlin</span>
+                  <span class="tech-tag">YOLOv8</span>
+                  <span class="tech-tag">TFLite</span>
+                  <span class="tech-tag">CameraX</span>
+                </div>
+              </div>
+
+              <div style="background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:1.25rem;">
+                <div style="font-size:1.25rem;margin-bottom:0.5rem;">🐕</div>
+                <div class="mini-project-head">
+                  <div class="mini-project-title">Dog Health (Neck Band)</div>
+                  <span class="mini-project-year">2025</span>
+                </div>
+                <div style="font-size:0.75rem;color:var(--muted);line-height:1.6;margin-bottom:0.75rem;">Flutter pet-health companion — live heart rate &amp; temperature from IoT neckband API, GPS tracking (Google Maps), vet directory, grooming &amp; reports. Firebase Auth + Google Sign-In, SQLite local storage.</div>
+                <div style="display:flex;flex-wrap:wrap;gap:0.3rem;">
+                  <span class="tech-tag">Flutter</span>
+                  <span class="tech-tag">Firebase</span>
+                  <span class="tech-tag">Google Maps</span>
+                  <span class="tech-tag">IoT API</span>
+                </div>
+              </div>
+
+              <div style="background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:1.25rem;">
+                <div style="font-size:1.25rem;margin-bottom:0.5rem;">🎓</div>
+                <div class="mini-project-head">
+                  <div class="mini-project-title">Aislyn Titus Attendance</div>
+                  <span class="mini-project-year">2025</span>
+                </div>
+                <div style="font-size:0.75rem;color:var(--muted);line-height:1.6;margin-bottom:0.75rem;">Dual-role Flutter school app (student &amp; staff) — table-calendar attendance, leave requests, homework upload/download, holidays, notifications via OneSignal + local alerts. Dio/HTTP to live PHP REST backend.</div>
+                <div style="display:flex;flex-wrap:wrap;gap:0.3rem;">
+                  <span class="tech-tag">Flutter</span>
+                  <span class="tech-tag">OneSignal</span>
+                  <span class="tech-tag">Dio</span>
+                  <span class="tech-tag">PHP REST</span>
+                </div>
+              </div>
+
+              <div style="background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:1.25rem;">
+                <div style="font-size:1.25rem;margin-bottom:0.5rem;">👤</div>
+                <div class="mini-project-head">
+                  <div class="mini-project-title">Face Recognition</div>
+                  <span class="mini-project-year">2025</span>
+                </div>
+                <div style="font-size:0.75rem;color:var(--muted);line-height:1.6;margin-bottom:0.75rem;">Flutter ML app — register faces from camera/gallery, real-time detection &amp; recognition via Google ML Kit, spoken TTS feedback, Hive local face database for offline matching.</div>
+                <div style="display:flex;flex-wrap:wrap;gap:0.3rem;">
+                  <span class="tech-tag">Flutter</span>
+                  <span class="tech-tag">ML Kit</span>
+                  <span class="tech-tag">Hive</span>
+                  <span class="tech-tag">flutter_tts</span>
+                </div>
+              </div>
+
+              <div style="background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:1.25rem;">
+                <div style="font-size:1.25rem;margin-bottom:0.5rem;">👟</div>
+                <div class="mini-project-head">
+                  <div class="mini-project-title">Pedometer</div>
+                  <span class="mini-project-year">2022</span>
+                </div>
+                <div style="font-size:0.75rem;color:var(--muted);line-height:1.6;margin-bottom:0.75rem;">Lightweight Android step tracker — hardware step-counter sensor (no GPS drain), daily goals, history charts (EazeGraph), Google Play achievements sign-in, boot-resume foreground service.</div>
+                <div style="display:flex;flex-wrap:wrap;gap:0.3rem;">
+                  <span class="tech-tag" style="background:rgba(52,211,153,0.08);border-color:rgba(52,211,153,0.2);color:var(--accent3)">Android Java</span>
+                  <span class="tech-tag" style="background:rgba(52,211,153,0.08);border-color:rgba(52,211,153,0.2);color:var(--accent3)">Step Sensor</span>
+                  <span class="tech-tag" style="background:rgba(52,211,153,0.08);border-color:rgba(52,211,153,0.2);color:var(--accent3)">Google Fit</span>
+                </div>
+              </div>
+
+              <div style="background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:1.25rem;">
+                <div style="font-size:1.25rem;margin-bottom:0.5rem;">📋</div>
+                <div class="mini-project-head">
+                  <div class="mini-project-title">College Notice Board</div>
+                  <span class="mini-project-year">2022</span>
+                </div>
+                <div style="font-size:0.75rem;color:var(--muted);line-height:1.6;margin-bottom:0.75rem;">Kotlin campus ops app — employee login/registration, live notice-board status (8s polling), parking-cost updates, profile. Dagger Hilt DI, Retrofit, Kotlin Flow + LiveData, Navigation Component.</div>
+                <div style="display:flex;flex-wrap:wrap;gap:0.3rem;">
+                  <span class="tech-tag">Kotlin</span>
+                  <span class="tech-tag">Dagger Hilt</span>
+                  <span class="tech-tag">Flow</span>
+                  <span class="tech-tag">Retrofit</span>
+                </div>
+              </div>
+
+              <div style="background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:1.25rem;">
+                <div style="font-size:1.25rem;margin-bottom:0.5rem;">✈️</div>
+                <div class="mini-project-head">
+                  <div class="mini-project-title">Smart Travel</div>
+                  <span class="mini-project-year">2022</span>
+                </div>
+                <div style="font-size:0.75rem;color:var(--muted);line-height:1.6;margin-bottom:0.75rem;">Kotlin/Java travel companion — OCR scan-to-translate (Tesseract + ML Kit), city attractions (Room + Hilt + Retrofit), travel notepad, QR generator. Firebase analytics, multi-language UI, user auth.</div>
+                <div style="display:flex;flex-wrap:wrap;gap:0.3rem;">
+                  <span class="tech-tag">Kotlin</span>
+                  <span class="tech-tag">ML Kit</span>
+                  <span class="tech-tag">Tesseract</span>
+                  <span class="tech-tag">Room</span>
+                </div>
+              </div>
+
+              <div style="background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:1.25rem;">
+                <div style="font-size:1.25rem;margin-bottom:0.5rem;">🛒</div>
+                <div class="mini-project-head">
+                  <div class="mini-project-title">Chikki Shop</div>
+                  <span class="mini-project-year">2022</span>
+                </div>
+                <div style="font-size:0.75rem;color:var(--muted);line-height:1.6;margin-bottom:0.75rem;">Native Android sweets e-commerce — customer catalog, cart &amp; orders; separate admin app for product CRUD and order fulfilment. Retrofit + Volley PHP API, Glide, shimmer loaders, auto-rotating banners.</div>
+                <div style="display:flex;flex-wrap:wrap;gap:0.3rem;">
+                  <span class="tech-tag" style="background:rgba(52,211,153,0.08);border-color:rgba(52,211,153,0.2);color:var(--accent3)">Android Java</span>
+                  <span class="tech-tag" style="background:rgba(52,211,153,0.08);border-color:rgba(52,211,153,0.2);color:var(--accent3)">Retrofit</span>
+                  <span class="tech-tag" style="background:rgba(52,211,153,0.08);border-color:rgba(52,211,153,0.2);color:var(--accent3)">Glide</span>
+                  <span class="tech-tag" style="background:rgba(52,211,153,0.08);border-color:rgba(52,211,153,0.2);color:var(--accent3)">PHP REST</span>
+                </div>
+              </div>
+
+              <div style="background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:1.25rem;">
+                <div style="font-size:1.25rem;margin-bottom:0.5rem;">🗺️</div>
+                <div class="mini-project-head">
+                  <div class="mini-project-title">Xplore Mysuru (TravelPlaces)</div>
+                  <span class="mini-project-year">2021</span>
+                </div>
+                <div style="font-size:0.75rem;color:var(--muted);line-height:1.6;margin-bottom:0.75rem;">Udacity tour-guide app for Mysore — 5 bottom-nav lists (places, parks, hotels, restaurants, shops) with expandable cards, Maps/dial intents, MVP + Repository, LruCache image loading, custom snap BottomNavigationBehavior.</div>
+                <div style="display:flex;flex-wrap:wrap;gap:0.3rem;">
+                  <span class="tech-tag" style="background:rgba(52,211,153,0.08);border-color:rgba(52,211,153,0.2);color:var(--accent3)">Android Java</span>
+                  <span class="tech-tag" style="background:rgba(52,211,153,0.08);border-color:rgba(52,211,153,0.2);color:var(--accent3)">MVP</span>
+                  <span class="tech-tag" style="background:rgba(52,211,153,0.08);border-color:rgba(52,211,153,0.2);color:var(--accent3)">LruCache</span>
+                  <span class="tech-tag" style="background:rgba(52,211,153,0.08);border-color:rgba(52,211,153,0.2);color:var(--accent3)">Maps</span>
+                </div>
+              </div>
+
+              <div style="background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:1.25rem;">
+                <div style="font-size:1.25rem;margin-bottom:0.5rem;">📝</div>
+                <div class="mini-project-head">
+                  <div class="mini-project-title">QR Scan Exam</div>
+                  <span class="mini-project-year">2021</span>
+                </div>
+                <div style="font-size:0.75rem;color:var(--muted);line-height:1.6;margin-bottom:0.75rem;">Two-sided online exam app — students scan QR to launch timed MCQ tests; teachers create question sets, view results, export PDFs. ZXing scanner, Retrofit PHP API, custom PDF creator module, countdown timer.</div>
+                <div style="display:flex;flex-wrap:wrap;gap:0.3rem;">
+                  <span class="tech-tag" style="background:rgba(52,211,153,0.08);border-color:rgba(52,211,153,0.2);color:var(--accent3)">Android Java</span>
+                  <span class="tech-tag" style="background:rgba(52,211,153,0.08);border-color:rgba(52,211,153,0.2);color:var(--accent3)">ZXing</span>
+                  <span class="tech-tag" style="background:rgba(52,211,153,0.08);border-color:rgba(52,211,153,0.2);color:var(--accent3)">Retrofit</span>
+                  <span class="tech-tag" style="background:rgba(52,211,153,0.08);border-color:rgba(52,211,153,0.2);color:var(--accent3)">PDF</span>
+                </div>
+              </div>
+
+              <div style="background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:1.25rem;">
+                <div style="font-size:1.25rem;margin-bottom:0.5rem;">💳</div>
+                <div class="mini-project-head">
+                  <div class="mini-project-title">HESA (Rural Fintech)</div>
+                  <span class="mini-project-year">2021</span>
+                </div>
+                <div style="font-size:0.75rem;color:var(--muted);line-height:1.6;margin-bottom:0.75rem;">Native Android super-app UI for Hesa Enterprises — wallet dashboard, bill-pay tiles (electricity, gas, DTH, loans, banking), QR profile, multi-step registration (email/mobile/account validation) and onboarding slider.</div>
+                <div style="display:flex;flex-wrap:wrap;gap:0.3rem;">
+                  <span class="tech-tag" style="background:rgba(52,211,153,0.08);border-color:rgba(52,211,153,0.2);color:var(--accent3)">Android Java</span>
+                  <span class="tech-tag" style="background:rgba(52,211,153,0.08);border-color:rgba(52,211,153,0.2);color:var(--accent3)">Fintech UI</span>
+                  <span class="tech-tag" style="background:rgba(52,211,153,0.08);border-color:rgba(52,211,153,0.2);color:var(--accent3)">KYC Flow</span>
+                </div>
+              </div>
+
+              <div style="background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:1.25rem;">
+                <div style="font-size:1.25rem;margin-bottom:0.5rem;">📚</div>
+                <div class="mini-project-head">
+                  <div class="mini-project-title">Aislyn Learn App</div>
+                  <span class="mini-project-year">2021</span>
+                </div>
+                <div style="font-size:0.75rem;color:var(--muted);line-height:1.6;margin-bottom:0.75rem;">Native Android edtech platform — 15+ paid course tracks (HTML, PHP, Python, Java, MySQL, Arduino, ARM, ML, Raspberry Pi) with YouTube lessons, ExoPlayer, Razorpay checkout, and Volley-backed user dashboard (courses, orders, feedback).</div>
+                <div style="display:flex;flex-wrap:wrap;gap:0.3rem;">
+                  <span class="tech-tag" style="background:rgba(52,211,153,0.08);border-color:rgba(52,211,153,0.2);color:var(--accent3)">Android Java</span>
+                  <span class="tech-tag" style="background:rgba(52,211,153,0.08);border-color:rgba(52,211,153,0.2);color:var(--accent3)">Razorpay</span>
+                  <span class="tech-tag" style="background:rgba(52,211,153,0.08);border-color:rgba(52,211,153,0.2);color:var(--accent3)">Volley</span>
+                  <span class="tech-tag" style="background:rgba(52,211,153,0.08);border-color:rgba(52,211,153,0.2);color:var(--accent3)">ExoPlayer</span>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="project-tech">
+              <span class="tech-tag" style="background:rgba(167,139,250,0.08);border-color:rgba(167,139,250,0.2);color:var(--accent2)">Flutter</span>
+              <span class="tech-tag" style="background:rgba(167,139,250,0.08);border-color:rgba(167,139,250,0.2);color:var(--accent2)">Android Java</span>
+              <span class="tech-tag" style="background:rgba(167,139,250,0.08);border-color:rgba(167,139,250,0.2);color:var(--accent2)">BLoC</span>
+              <span class="tech-tag" style="background:rgba(167,139,250,0.08);border-color:rgba(167,139,250,0.2);color:var(--accent2)">ZXing</span>
+              <span class="tech-tag" style="background:rgba(167,139,250,0.08);border-color:rgba(167,139,250,0.2);color:var(--accent2)">OneSignal</span>
+              <span class="tech-tag" style="background:rgba(167,139,250,0.08);border-color:rgba(167,139,250,0.2);color:var(--accent2)">SQLite</span>
+              <span class="tech-tag" style="background:rgba(167,139,250,0.08);border-color:rgba(167,139,250,0.2);color:var(--accent2)">IoT API</span>
+              <span class="tech-tag" style="background:rgba(167,139,250,0.08);border-color:rgba(167,139,250,0.2);color:var(--accent2)">PHP REST</span>
+              <span class="tech-tag" style="background:rgba(167,139,250,0.08);border-color:rgba(167,139,250,0.2);color:var(--accent2)">Razorpay</span>
+              <span class="tech-tag" style="background:rgba(167,139,250,0.08);border-color:rgba(167,139,250,0.2);color:var(--accent2)">Volley</span>
+              <span class="tech-tag" style="background:rgba(167,139,250,0.08);border-color:rgba(167,139,250,0.2);color:var(--accent2)">Retrofit</span>
+              <span class="tech-tag" style="background:rgba(167,139,250,0.08);border-color:rgba(167,139,250,0.2);color:var(--accent2)">Glide</span>
+              <span class="tech-tag" style="background:rgba(167,139,250,0.08);border-color:rgba(167,139,250,0.2);color:var(--accent2)">Kotlin</span>
+              <span class="tech-tag" style="background:rgba(167,139,250,0.08);border-color:rgba(167,139,250,0.2);color:var(--accent2)">Dagger Hilt</span>
+              <span class="tech-tag" style="background:rgba(167,139,250,0.08);border-color:rgba(167,139,250,0.2);color:var(--accent2)">ML Kit</span>
+              <span class="tech-tag" style="background:rgba(167,139,250,0.08);border-color:rgba(167,139,250,0.2);color:var(--accent2)">Hive</span>
+              <span class="tech-tag" style="background:rgba(167,139,250,0.08);border-color:rgba(167,139,250,0.2);color:var(--accent2)">Step Sensor</span>
+              <span class="tech-tag" style="background:rgba(167,139,250,0.08);border-color:rgba(167,139,250,0.2);color:var(--accent2)">PDF</span>
+              <span class="tech-tag" style="background:rgba(167,139,250,0.08);border-color:rgba(167,139,250,0.2);color:var(--accent2)">Tesseract</span>
+              <span class="tech-tag" style="background:rgba(167,139,250,0.08);border-color:rgba(167,139,250,0.2);color:var(--accent2)">Room</span>
+              <span class="tech-tag" style="background:rgba(167,139,250,0.08);border-color:rgba(167,139,250,0.2);color:var(--accent2)">MVP</span>
+              <span class="tech-tag" style="background:rgba(167,139,250,0.08);border-color:rgba(167,139,250,0.2);color:var(--accent2)">YOLOv8</span>
+              <span class="tech-tag" style="background:rgba(167,139,250,0.08);border-color:rgba(167,139,250,0.2);color:var(--accent2)">TFLite</span>
+              <span class="tech-tag" style="background:rgba(167,139,250,0.08);border-color:rgba(167,139,250,0.2);color:var(--accent2)">CameraX</span>
+              <span class="tech-tag" style="background:rgba(167,139,250,0.08);border-color:rgba(167,139,250,0.2);color:var(--accent2)">Firebase</span>
+              <span class="tech-tag" style="background:rgba(167,139,250,0.08);border-color:rgba(167,139,250,0.2);color:var(--accent2)">Google Maps</span>
+            </div>
+          </div>
+          <div class="project-badge">
+            <div class="badge-icon">⚡</div>
+            <span class="status-badge">● Shipped</span>
+            <span class="countries-badge">14 Projects</span>
           </div>
         </div>
 
