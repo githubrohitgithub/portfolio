@@ -63,34 +63,85 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
       font-family: 'JetBrains Mono', monospace;
+      flex-shrink: 0;
     }
+
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 44px;
+      height: 44px;
+      padding: 10px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--surface2);
+      cursor: pointer;
+      z-index: 110;
+      flex-shrink: 0;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    .nav-toggle[aria-expanded="true"] span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .nav-toggle[aria-expanded="true"] span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    .nav-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 99;
+      background: rgba(5, 8, 16, 0.6);
+      backdrop-filter: blur(4px);
+    }
+
+    .nav-backdrop.visible { display: block; }
 
     .nav-links {
       display: flex;
-      gap: 2rem;
+      align-items: center;
+      gap: 1.5rem;
       list-style: none;
+      flex-wrap: nowrap;
     }
 
     .nav-links a {
       color: var(--muted);
       text-decoration: none;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       font-weight: 500;
       transition: color 0.2s;
       letter-spacing: 0.05em;
       text-transform: uppercase;
+      white-space: nowrap;
     }
 
     .nav-links a:hover { color: var(--accent); }
 
     .nav-cta {
+      display: inline-block;
       background: linear-gradient(135deg, var(--accent), var(--accent2));
-      color: #fff !important;
       padding: 0.45rem 1.2rem;
       border-radius: 6px;
       font-weight: 600 !important;
       color: var(--bg) !important;
       -webkit-text-fill-color: var(--bg) !important;
+      white-space: nowrap;
+      flex-shrink: 0;
+      text-align: center;
     }
 
     /* ── SECTIONS ── */
@@ -907,16 +958,75 @@
       50% { border-color: transparent; }
     }
 
+    .mini-projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
     /* ── RESPONSIVE ── */
+    @media (max-width: 1200px) and (min-width: 1025px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1rem; }
+      .nav-links a { font-size: 0.72rem; }
+    }
+
+    @media (max-width: 1024px) {
+      nav { padding: 1rem 1.25rem; }
+      .nav-toggle { display: flex; }
+
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: min(300px, 88vw);
+        height: 100dvh;
+        height: 100vh;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 5.5rem 1.5rem 2rem;
+        background: rgba(5, 8, 16, 0.98);
+        border-left: 1px solid var(--border);
+        box-shadow: -8px 0 32px rgba(0, 0, 0, 0.4);
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        overflow-y: auto;
+        z-index: 100;
+      }
+
+      .nav-links.open { transform: translateX(0); }
+
+      .nav-links li { width: 100%; }
+
+      .nav-links a {
+        display: block;
+        padding: 0.9rem 0;
+        font-size: 0.9rem;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav-links li:last-child a { border-bottom: none; }
+
+      .nav-cta {
+        margin-top: 0.75rem;
+        padding: 0.75rem 1.25rem;
+        border-radius: 8px;
+      }
+
+      body.nav-open { overflow: hidden; }
+    }
+
     @media (max-width: 900px) {
       .about-grid { grid-template-columns: 1fr; gap: 2rem; }
       .ai-grid { grid-template-columns: 1fr 1fr; }
       .project-card { grid-template-columns: 1fr; }
       .project-badge { flex-direction: row; align-items: center; }
+      .mini-projects-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 600px) {
-      .nav-links { display: none; }
       .ai-grid { grid-template-columns: 1fr; }
       .about-cards { grid-template-columns: 1fr; }
       .project-features { grid-template-columns: 1fr; }
@@ -1039,11 +1149,15 @@
   <canvas id="bg-canvas"></canvas>
 
   <!-- NAV -->
+  <div class="nav-backdrop" id="navBackdrop" aria-hidden="true"></div>
   <nav>
     <div class="logo">rp.dev</div>
-    <ul class="nav-links">
+    <button type="button" class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
       <li><a href="#about">About</a></li>
-      <li><a href="#ai">AI & Agents</a></li>
+      <li><a href="#ai">AI &amp; Agents</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#experience">Experience</a></li>
@@ -1546,7 +1660,7 @@
             <div class="project-tagline">Smaller apps shipped end-to-end — real features, real backends</div>
             <p class="project-desc">A collection of focused side projects built to solve real problems, each with a live backend, hardware or native integration, and shipped to working APKs. Years show last source-code edit (newest first).</p>
 
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.5rem;">
+            <div class="mini-projects-grid">
 
               <div style="background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:1.25rem;">
                 <div style="font-size:1.25rem;margin-bottom:0.5rem;">🧠</div>
@@ -2065,11 +2179,36 @@
 
     counters.forEach(el => counterObserver.observe(el));
 
+    // ── MOBILE NAV ──
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    const navBackdrop = document.getElementById('navBackdrop');
+
+    function setNavOpen(open) {
+      navLinks.classList.toggle('open', open);
+      navBackdrop.classList.toggle('visible', open);
+      navToggle.setAttribute('aria-expanded', open);
+      navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      document.body.classList.toggle('nav-open', open);
+    }
+
+    navToggle.addEventListener('click', () => setNavOpen(!navLinks.classList.contains('open')));
+    navBackdrop.addEventListener('click', () => setNavOpen(false));
+    window.addEventListener('keydown', e => {
+      if (e.key === 'Escape') setNavOpen(false);
+    });
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 1024) setNavOpen(false);
+    });
+
     // ── SMOOTH NAV ──
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (!target) return;
         e.preventDefault();
-        document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+        setNavOpen(false);
+        target.scrollIntoView({ behavior: 'smooth' });
       });
     });
   </script>
