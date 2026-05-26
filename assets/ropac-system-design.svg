@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0B1220"/>
+      <stop offset="100%" stop-color="#121A2E"/>
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#0891B2"/>
+      <stop offset="100%" stop-color="#8B5CF6"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#22D3EE"/>
+    </marker>
+    <marker id="arrowMuted" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#6B7A99"/>
+    </marker>
+  </defs>
+
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  <rect x="0" y="0" width="1280" height="4" fill="url(#accentGrad)"/>
+
+  <text x="64" y="72" fill="#F1F5F9" font-family="system-ui, -apple-system, sans-serif" font-size="36" font-weight="700">RoPac - System Design</text>
+  <text x="64" y="108" fill="#94A3B8" font-family="system-ui, sans-serif" font-size="18">Offline personal AI - learns your life - 100% on your Mac</text>
+  <rect x="900" y="48" width="316" height="44" rx="22" fill="#22D3EE22" stroke="#22D3EE" stroke-width="1.5"/>
+  <text x="1058" y="76" text-anchor="middle" fill="#22D3EE" font-family="system-ui" font-size="14" font-weight="600">NO CLOUD - LOCALHOST ONLY</text>
+
+  <g font-family="system-ui, sans-serif">
+    <rect x="48" y="200" width="140" height="72" rx="14" fill="#1E3A2F" stroke="#34D399" stroke-width="2"/>
+    <text x="118" y="232" text-anchor="middle" fill="#A7F3D0" font-size="15" font-weight="700">You / Family</text>
+    <text x="118" y="252" text-anchor="middle" fill="#6EE7B7" font-size="11">Chat / Train / Legacy</text>
+
+    <rect x="228" y="200" width="148" height="72" rx="14" fill="#1E293B" stroke="#22D3EE" stroke-width="2"/>
+    <text x="302" y="232" text-anchor="middle" fill="#F1F5F9" font-size="15" font-weight="700">RoPac.app</text>
+    <text x="302" y="252" text-anchor="middle" fill="#94A3B8" font-size="11">Flutter macOS UI</text>
+
+    <rect x="416" y="200" width="148" height="72" rx="14" fill="#1E293B" stroke="#38BDF8" stroke-width="2"/>
+    <text x="490" y="232" text-anchor="middle" fill="#F1F5F9" font-size="15" font-weight="700">bridge.py</text>
+    <text x="490" y="252" text-anchor="middle" fill="#94A3B8" font-size="11">JSON subprocess</text>
+
+    <rect x="604" y="200" width="168" height="72" rx="14" fill="#1E293B" stroke="#8B5CF6" stroke-width="2"/>
+    <text x="688" y="232" text-anchor="middle" fill="#F1F5F9" font-size="15" font-weight="700">assistant.py</text>
+    <text x="688" y="252" text-anchor="middle" fill="#94A3B8" font-size="11">Memory / RAG / Auth</text>
+
+    <rect x="812" y="200" width="148" height="72" rx="14" fill="#164E63" stroke="#22D3EE" stroke-width="2" filter="url(#glow)"/>
+    <text x="886" y="232" text-anchor="middle" fill="#F1F5F9" font-size="15" font-weight="700">Ollama</text>
+    <text x="886" y="252" text-anchor="middle" fill="#67E8F9" font-size="11">roPac LLM :11434</text>
+
+    <rect x="604" y="320" width="168" height="80" rx="14" fill="#3B2F1A" stroke="#FBBF24" stroke-width="2"/>
+    <text x="688" y="352" text-anchor="middle" fill="#FDE68A" font-size="15" font-weight="700">data/</text>
+    <text x="688" y="372" text-anchor="middle" fill="#D6D3D1" font-size="10">memory.json, knowledge/</text>
+    <text x="688" y="386" text-anchor="middle" fill="#D6D3D1" font-size="10">owner.auth, chat log</text>
+
+    <rect x="228" y="320" width="148" height="56" rx="14" fill="#1E293B" stroke="#6B7A99" stroke-width="1.5" stroke-dasharray="6 4"/>
+    <text x="302" y="348" text-anchor="middle" fill="#CBD5E1" font-size="14" font-weight="600">Piper TTS</text>
+    <text x="302" y="364" text-anchor="middle" fill="#64748B" font-size="10">optional offline voice</text>
+  </g>
+
+  <line x1="188" y1="236" x2="224" y2="236" stroke="#22D3EE" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <line x1="376" y1="236" x2="412" y2="236" stroke="#22D3EE" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <line x1="564" y1="236" x2="600" y2="236" stroke="#22D3EE" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <line x1="772" y1="236" x2="808" y2="236" stroke="#22D3EE" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <line x1="688" y1="272" x2="688" y2="316" stroke="#FBBF24" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="672" y1="316" x2="672" y2="272" stroke="#FBBF24" stroke-width="1.5" marker-end="url(#arrow)" opacity="0.6"/>
+
+  <path d="M302 272 L302 316" stroke="#6B7A99" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#arrowMuted)"/>
+
+  <rect x="1000" y="168" width="232" height="280" rx="16" fill="#0F172A" stroke="#334155" stroke-width="1"/>
+  <text x="1024" y="200" fill="#22D3EE" font-family="system-ui" font-size="13" font-weight="700">5 LAYERS</text>
+  <g font-family="system-ui" font-size="11" fill="#CBD5E1">
+    <rect x="1024" y="214" width="184" height="36" rx="8" fill="#1E293B"/><text x="1036" y="237">1 Presentation - Flutter UI</text>
+    <rect x="1024" y="256" width="184" height="36" rx="8" fill="#1E293B"/><text x="1036" y="279">2 Bridge - bridge.py</text>
+    <rect x="1024" y="298" width="184" height="36" rx="8" fill="#1E293B"/><text x="1036" y="321">3 App - assistant.py</text>
+    <rect x="1024" y="340" width="184" height="36" rx="8" fill="#164E63"/><text x="1036" y="363">4 Intelligence - Ollama</text>
+    <rect x="1024" y="382" width="184" height="36" rx="8" fill="#3B2F1A"/><text x="1036" y="405">5 Persistence - data/</text>
+  </g>
+
+  <rect x="48" y="440" width="1184" height="120" rx="16" fill="#0F172A88" stroke="#334155"/>
+  <text x="72" y="472" fill="#8B5CF6" font-family="system-ui" font-size="13" font-weight="700">CHAT FLOW</text>
+  <text x="72" y="500" fill="#E2E8F0" font-family="system-ui" font-size="13">You type - RoPac.app - bridge.py - assistant.py loads memory + docs - Ollama replies - UI shows answer</text>
+  <text x="72" y="528" fill="#94A3B8" font-family="system-ui" font-size="12">Memory saves only with owner password (remember / forget / please remember / train file)</text>
+
+  <rect x="48" y="580" width="1184" height="100" rx="16" fill="url(#accentGrad)" opacity="0.12" stroke="url(#accentGrad)" stroke-width="1"/>
+  <text x="72" y="612" fill="#F1F5F9" font-family="system-ui" font-size="13" font-weight="700">DIGITAL LEGACY VISION</text>
+  <text x="72" y="640" fill="#CBD5E1" font-family="system-ui" font-size="14">Your documents and memories - RoPac learns - virtual companion - children ask for your advice later</text>
+  <text x="72" y="662" fill="#94A3B8" font-family="system-ui" font-size="12">Built by Rohit - Python + Flutter + Ollama - docs/system-design.md</text>
+</svg>
