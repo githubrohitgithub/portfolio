@@ -32,7 +32,6 @@ jobs:
           mkdir -p _site
           cp index.html Rohit_Pachori_Resume.pdf _site/
           cp -r assets _site/
-          if [ -d gurushree ]; then cp -r gurushree _site/; fi
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
