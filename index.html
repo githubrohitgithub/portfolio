@@ -638,6 +638,79 @@
       margin-bottom: 0.15rem;
     }
 
+    .rag-pipeline {
+      margin-top: 1.75rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(34,211,238,0.15);
+    }
+
+    .rag-pipeline-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-family: 'JetBrains Mono', monospace;
+      color: #22d3ee;
+      margin-bottom: 0.5rem;
+    }
+
+    .rag-pipeline-intro {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 58rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .rag-pipeline-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+    }
+
+    .rag-stage {
+      background: rgba(15,23,42,0.55);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem 1.1rem;
+      border-left: 3px solid var(--rag-accent, #22d3ee);
+    }
+
+    .rag-stage.chunking { --rag-accent: #38bdf8; }
+    .rag-stage.embedding { --rag-accent: #a855f7; }
+    .rag-stage.vectordb { --rag-accent: #22c55e; }
+    .rag-stage.retrieval { --rag-accent: #f43f5e; }
+
+    .rag-stage-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--rag-accent);
+      margin-bottom: 0.35rem;
+    }
+
+    .rag-stage-name {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.35rem;
+    }
+
+    .rag-stage-desc {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.55;
+      margin-bottom: 0.5rem;
+    }
+
+    .rag-stage-code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: #22d3ee;
+      opacity: 0.9;
+    }
+
     .project-card.ropac { --card-glow: rgba(34,211,238,0.07); }
     .project-card.ropac .project-number { color: #22d3ee; }
     .project-card.ropac .project-features li::before { color: #22d3ee; }
@@ -1238,6 +1311,7 @@
       .ai-grid { grid-template-columns: 1fr 1fr; }
       .ai-project-hero { grid-template-columns: 1fr; }
       .ai-project-features { grid-template-columns: 1fr; }
+      .rag-pipeline-grid { grid-template-columns: 1fr; }
       .project-card { grid-template-columns: 1fr; }
       .project-badge { flex-direction: row; align-items: center; }
       .mini-projects-grid { grid-template-columns: 1fr; }
@@ -1611,7 +1685,8 @@
             <li>Custom Ollama LLM (<code style="font-size:0.75em">roPac</code>) with Modelfile personality</li>
             <li>Flutter macOS desktop app — Chat + Train tabs</li>
             <li>Python <code style="font-size:0.75em">bridge.py</code> + <code style="font-size:0.75em">assistant.py</code> (no HTTP server)</li>
-            <li>RAG over PDF, Excel, Word, text &amp; code files</li>
+            <li>Custom RAG pipeline — chunk → embed → JSON store → hybrid retrieval (see below)</li>
+            <li>Ingest PDF, Excel, Word, text &amp; code via Train tab + chat attachments</li>
             <li>Owner password (PBKDF2) — memory only when you authorize</li>
             <li>Long-term memory (<code style="font-size:0.75em">remember</code> / <code style="font-size:0.75em">forget</code> / <code style="font-size:0.75em">please remember</code>)</li>
             <li>Train tab — upload &amp; ingest documents offline</li>
@@ -1623,12 +1698,66 @@
             <li>macOS app: Start/Stop model, folder path config</li>
             <li>Vision: family asks “What would Dad say?” — offline on their Mac</li>
           </ul>
+
+          <div class="rag-pipeline reveal">
+            <div class="rag-pipeline-title">// rag.pipeline</div>
+            <p class="rag-pipeline-intro">
+              I designed and implemented the full retrieval stack in Python — no Pinecone, no cloud vector DB.
+              Every stage runs offline on <code style="font-family:'JetBrains Mono',monospace;font-size:0.85em;color:#22d3ee">localhost</code>
+              and feeds context into the Ollama system prompt before each reply.
+            </p>
+            <div class="rag-pipeline-grid">
+              <div class="rag-stage chunking">
+                <div class="rag-stage-num">01 · CHUNKING</div>
+                <div class="rag-stage-name">Document segmentation</div>
+                <p class="rag-stage-desc">
+                  <code style="font-size:0.75em">ingest.py</code> splits uploaded files with overlap so context is not lost at boundaries.
+                  File-type aware: line-based chunks for logs/CSV, character windows for prose and code.
+                  Train tab uses 1200-char chunks (150 overlap); chat attachments use 1500 / 200.
+                </p>
+                <div class="rag-stage-code">chunk_text_for_path() · pypdf · openpyxl · python-docx</div>
+              </div>
+              <div class="rag-stage embedding">
+                <div class="rag-stage-num">02 · EMBEDDING</div>
+                <div class="rag-stage-name">Neural vector generation</div>
+                <p class="rag-stage-desc">
+                  <code style="font-size:0.75em">embeddings.py</code> calls local Ollama via the OpenAI-compatible
+                  <code style="font-size:0.75em">/v1/embeddings</code> API using <strong>nomic-embed-text</strong> (768-dim).
+                  Batched indexing; query prefix <code style="font-size:0.75em">search_query:</code> for nomic retrieval quality.
+                </p>
+                <div class="rag-stage-code">embed_texts() · embed_query() · cosine_similarity()</div>
+              </div>
+              <div class="rag-stage vectordb">
+                <div class="rag-stage-num">03 · VECTOR STORE</div>
+                <div class="rag-stage-name">Encrypted JSON on disk</div>
+                <p class="rag-stage-desc">
+                  No SQLite or hosted DB — vectors live in <code style="font-size:0.75em">data/knowledge/</code>
+                  (<code style="font-size:0.75em">memory.embeddings.json</code> + per-session files).
+                  Optional AES-GCM encryption at rest via <code style="font-size:0.75em">data_crypto.py</code> when owner password is set.
+                </p>
+                <div class="rag-stage-code">index_attachment_paths() · _read_store() · PBKDF2 key derivation</div>
+              </div>
+              <div class="rag-stage retrieval">
+                <div class="rag-stage-num">04 · HYBRID RETRIEVAL</div>
+                <div class="rag-stage-name">Semantic + keyword blend</div>
+                <p class="rag-stage-desc">
+                  <code style="font-size:0.75em">rag.py → retrieve_all_context()</code> merges owner memory, trained docs, and chat attachments.
+                  Scores each chunk with cosine similarity + exact keyword hits, blended 65% / 35%.
+                  Results are formatted into labeled prompt blocks the LLM must cite.
+                </p>
+                <div class="rag-stage-code">retrieve_attachment_hybrid() · format_rag_for_prompt()</div>
+              </div>
+            </div>
+          </div>
+
           <div class="project-tech">
             <span class="tech-tag" style="background:rgba(34,211,238,0.08);border-color:rgba(34,211,238,0.22);color:#22d3ee">Flutter</span>
             <span class="tech-tag" style="background:rgba(34,211,238,0.08);border-color:rgba(34,211,238,0.22);color:#22d3ee">macOS</span>
             <span class="tech-tag" style="background:rgba(34,211,238,0.08);border-color:rgba(34,211,238,0.22);color:#22d3ee">Python</span>
             <span class="tech-tag" style="background:rgba(34,211,238,0.08);border-color:rgba(34,211,238,0.22);color:#22d3ee">Ollama</span>
             <span class="tech-tag" style="background:rgba(34,211,238,0.08);border-color:rgba(34,211,238,0.22);color:#22d3ee">RAG</span>
+            <span class="tech-tag" style="background:rgba(34,211,238,0.08);border-color:rgba(34,211,238,0.22);color:#22d3ee">nomic-embed-text</span>
+            <span class="tech-tag" style="background:rgba(34,211,238,0.08);border-color:rgba(34,211,238,0.22);color:#22d3ee">Hybrid Search</span>
             <span class="tech-tag" style="background:rgba(34,211,238,0.08);border-color:rgba(34,211,238,0.22);color:#22d3ee">Piper TTS</span>
             <span class="tech-tag" style="background:rgba(34,211,238,0.08);border-color:rgba(34,211,238,0.22);color:#22d3ee">pypdf</span>
             <span class="tech-tag" style="background:rgba(34,211,238,0.08);border-color:rgba(34,211,238,0.22);color:#22d3ee">MVVM</span>
@@ -1651,9 +1780,9 @@
       <div class="ai-arch-layers reveal">
         <div class="ai-layer-chip"><strong>L1</strong>Flutter UI</div>
         <div class="ai-layer-chip"><strong>L2</strong>bridge.py</div>
-        <div class="ai-layer-chip"><strong>L3</strong>assistant.py</div>
+        <div class="ai-layer-chip"><strong>L3</strong>assistant.py + rag.py</div>
         <div class="ai-layer-chip"><strong>L4</strong>Ollama LLM</div>
-        <div class="ai-layer-chip"><strong>L5</strong>data/</div>
+        <div class="ai-layer-chip"><strong>L5</strong>data/knowledge/</div>
       </div>
     </div>
   </section>
