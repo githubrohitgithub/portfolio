@@ -752,6 +752,38 @@
       color: #2dd4bf;
     }
 
+    .ai-project-hero.visionassist {
+      border-color: rgba(74,222,128,0.28);
+      margin-top: 1.75rem;
+    }
+
+    .ai-project-hero.visionassist::before {
+      background: radial-gradient(ellipse at 0% 0%, rgba(74,222,128,0.1), transparent 55%);
+    }
+
+    .ai-project-hero.visionassist .first-ai-badge,
+    .ai-project-hero.visionassist .ai-project-features li::before,
+    .ai-project-hero.visionassist .project-link {
+      color: #4ade80;
+    }
+
+    .ai-project-hero.visionassist .first-ai-badge {
+      background: rgba(74,222,128,0.12);
+      border-color: rgba(74,222,128,0.35);
+    }
+
+    .ai-project-hero.visionassist .ai-project-name {
+      background: linear-gradient(135deg, #fff 20%, #4ade80 75%, #bbf7d0 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    .ai-project-hero.visionassist .tech-tag {
+      background: rgba(74,222,128,0.08);
+      border-color: rgba(74,222,128,0.22);
+      color: #4ade80;
+    }
+
     .project-link {
       display: inline-block;
       margin: 0.25rem 0 1rem;
@@ -1705,6 +1737,7 @@
         End-to-end AI products I designed and shipped — not just AI-assisted coding.
         <strong style="color:#22d3ee">RoPac</strong> is a fully offline personal assistant for the Mac.
         <strong style="color:#2dd4bf">MediLens</strong> is an on-device Android assistant for prescriptions and lab reports.
+        <strong style="color:#4ade80">VisionAssist</strong> is an on-device camera assistant that describes surroundings for visually impaired users.
       </p>
 
       <article class="ai-project-hero reveal">
@@ -2255,6 +2288,57 @@
         <div class="ai-layer-chip"><strong>L4</strong>Local summary</div>
         <div class="ai-layer-chip"><strong>L5</strong>Gemini Nano</div>
       </div>
+
+      <article class="ai-project-hero visionassist reveal">
+        <div class="ai-project-content">
+          <span class="first-ai-badge">Android · Accessibility · Computer vision</span>
+          <h3 class="ai-project-name">VisionAssist — AI Accessibility Assistant</h3>
+          <p class="ai-project-tagline">Describes objects, reads printed text, and speaks the scene. Frames never leave the phone.</p>
+          <p class="ai-project-desc">
+            VisionAssist is an offline-first <strong>Kotlin and Jetpack Compose</strong> app for visually impaired users.
+            <strong>CameraX</strong> streams the back camera, <strong>ML Kit Object Detection</strong> labels what is in view,
+            and <strong>ML Kit OCR</strong> reads printed Latin text. A scene interpreter turns boxes into left / ahead / right
+            phrases, flags a large object in the center as something close, and <strong>Android TextToSpeech</strong>
+            speaks the description. TalkBack users hear it once — the app stays quiet when touch exploration is on.
+          </p>
+          <div class="ai-project-highlights">
+            <span class="ai-highlight-pill">NO CLOUD</span>
+            <span class="ai-highlight-pill">Real-time CameraX</span>
+            <span class="ai-highlight-pill">Object detection</span>
+            <span class="ai-highlight-pill">Spoken scene</span>
+          </div>
+          <ul class="ai-project-features">
+            <li>Live back-camera preview with CameraX ImageAnalysis</li>
+            <li>On-device object detection in stream mode with classification</li>
+            <li>On-device Latin OCR on a 1.5s interval so the camera stays smooth</li>
+            <li>Objects, Text, and Scene modes — one pipeline, three descriptions</li>
+            <li>Left / ahead / right placement from the bounding box</li>
+            <li>Caution + haptic when a large object fills the center of the frame</li>
+            <li>Spoken descriptions with pause, resume, and Describe now</li>
+            <li>TalkBack-aware TTS so the line is not spoken twice</li>
+            <li>High-contrast dark UI, 56dp controls, live-region status</li>
+          </ul>
+          <a class="project-link" href="https://github.com/githubrohitgithub/VisionAssist" target="_blank" rel="noopener noreferrer">github.com/githubrohitgithub/VisionAssist</a>
+          <div class="project-tech">
+            <span class="tech-tag">Kotlin</span>
+            <span class="tech-tag">Jetpack Compose</span>
+            <span class="tech-tag">MVVM</span>
+            <span class="tech-tag">CameraX</span>
+            <span class="tech-tag">ML Kit Object Detection</span>
+            <span class="tech-tag">ML Kit OCR</span>
+            <span class="tech-tag">TextToSpeech</span>
+            <span class="tech-tag">Accessibility</span>
+          </div>
+        </div>
+      </article>
+
+      <div class="ai-arch-layers reveal">
+        <div class="ai-layer-chip"><strong>L1</strong>Compose UI</div>
+        <div class="ai-layer-chip"><strong>L2</strong>CameraX</div>
+        <div class="ai-layer-chip"><strong>L3</strong>ML Kit detect + OCR</div>
+        <div class="ai-layer-chip"><strong>L4</strong>Scene interpreter</div>
+        <div class="ai-layer-chip"><strong>L5</strong>TextToSpeech</div>
+      </div>
     </div>
   </section>
 
@@ -2334,6 +2418,10 @@
           <span class="tag">Document Ingestion</span>
           <span class="tag">Privacy-First AI</span>
           <span class="tag">ML Kit OCR</span>
+          <span class="tag">ML Kit Object Detection</span>
+          <span class="tag">CameraX</span>
+          <span class="tag">TextToSpeech</span>
+          <span class="tag">Accessibility</span>
           <span class="tag">Gemini Nano</span>
           <span class="tag">On-device Android AI</span>
         </div>
