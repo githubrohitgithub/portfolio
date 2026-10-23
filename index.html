@@ -720,6 +720,50 @@
       color: #22d3ee;
     }
 
+    .ai-project-hero.medilens {
+      border-color: rgba(45,212,191,0.28);
+      margin-top: 1.75rem;
+    }
+
+    .ai-project-hero.medilens::before {
+      background: radial-gradient(ellipse at 0% 0%, rgba(45,212,191,0.1), transparent 55%);
+    }
+
+    .ai-project-hero.medilens .first-ai-badge,
+    .ai-project-hero.medilens .ai-project-features li::before,
+    .ai-project-hero.medilens .project-link {
+      color: #2dd4bf;
+    }
+
+    .ai-project-hero.medilens .first-ai-badge {
+      background: rgba(45,212,191,0.12);
+      border-color: rgba(45,212,191,0.35);
+    }
+
+    .ai-project-hero.medilens .ai-project-name {
+      background: linear-gradient(135deg, #fff 20%, #2dd4bf 75%, #99f6e4 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    .ai-project-hero.medilens .tech-tag {
+      background: rgba(45,212,191,0.08);
+      border-color: rgba(45,212,191,0.22);
+      color: #2dd4bf;
+    }
+
+    .project-link {
+      display: inline-block;
+      margin: 0.25rem 0 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #22d3ee;
+      text-decoration: none;
+    }
+
+    .project-link:hover { text-decoration: underline; }
+
     /* ── SKILLS ── */
     #skills {
       padding: 6rem 2rem;
@@ -1658,9 +1702,9 @@
       <div class="section-label reveal">// ai.projects</div>
       <h2 class="section-title reveal">AI <span>Projects</span></h2>
       <p class="reveal" style="color:var(--muted);max-width:720px;margin-top:0.5rem">
-        End-to-end AI products I designed and shipped — not just AI-assisted coding. 
-        <strong style="color:var(--text)">RoPac</strong> is my <strong style="color:#22d3ee">first AI project</strong>: 
-        a fully offline personal assistant that learns your documents and memories on your Mac, with zero cloud APIs.
+        End-to-end AI products I designed and shipped — not just AI-assisted coding.
+        <strong style="color:#22d3ee">RoPac</strong> is a fully offline personal assistant for the Mac.
+        <strong style="color:#2dd4bf">MediLens</strong> is an on-device Android assistant for prescriptions and lab reports.
       </p>
 
       <article class="ai-project-hero reveal">
@@ -2160,6 +2204,57 @@
         <div class="ai-layer-chip"><strong>L4</strong>Ollama LLM</div>
         <div class="ai-layer-chip"><strong>L5</strong>data/knowledge/</div>
       </div>
+
+      <article class="ai-project-hero medilens reveal">
+        <div class="ai-project-content">
+          <span class="first-ai-badge">Android · Healthcare · On-device AI</span>
+          <h3 class="ai-project-name">MediLens — AI Healthcare Document Assistant</h3>
+          <p class="ai-project-tagline">Scans prescriptions and lab reports on the phone. Text never goes to the cloud.</p>
+          <p class="ai-project-desc">
+            MediLens is an offline-first <strong>Kotlin and Jetpack Compose</strong> app.
+            <strong>CameraX</strong> captures the page, <strong>ML Kit OCR</strong> reads it, and a local parser
+            pulls out medicine names, doses, frequencies, and dates. Records live in <strong>Room</strong> and
+            can be searched without a network. A plain-language summary is written on the device.
+            On a longer page, <strong>Gemini Nano</strong> can rewrite that summary through ML Kit GenAI — only if the model is already on the phone.
+          </p>
+          <div class="ai-project-highlights">
+            <span class="ai-highlight-pill">NO CLOUD</span>
+            <span class="ai-highlight-pill">ML Kit OCR</span>
+            <span class="ai-highlight-pill">Gemini Nano</span>
+            <span class="ai-highlight-pill">Medication reminders</span>
+          </div>
+          <ul class="ai-project-features">
+            <li>Scan with CameraX or import a photo already on the phone</li>
+            <li>On-device Latin OCR with ML Kit Text Recognition</li>
+            <li>Extract medicine name, dose, frequency, and dates</li>
+            <li>File each page as a prescription, lab report, or other document</li>
+            <li>Offline Room search across title, summary, text, and medicines</li>
+            <li>Plain-language summary that is not a diagnosis</li>
+            <li>Optional Gemini Nano rewrite when the on-device model is available</li>
+            <li>Daily medication reminders with WorkManager</li>
+            <li>App-private images and database, with Android backup turned off</li>
+          </ul>
+          <a class="project-link" href="https://github.com/githubrohitgithub/Medi-Lense" target="_blank" rel="noopener noreferrer">github.com/githubrohitgithub/Medi-Lense</a>
+          <div class="project-tech">
+            <span class="tech-tag">Kotlin</span>
+            <span class="tech-tag">Jetpack Compose</span>
+            <span class="tech-tag">MVVM</span>
+            <span class="tech-tag">CameraX</span>
+            <span class="tech-tag">ML Kit OCR</span>
+            <span class="tech-tag">Gemini Nano</span>
+            <span class="tech-tag">Room</span>
+            <span class="tech-tag">WorkManager</span>
+          </div>
+        </div>
+      </article>
+
+      <div class="ai-arch-layers reveal">
+        <div class="ai-layer-chip"><strong>L1</strong>Compose UI</div>
+        <div class="ai-layer-chip"><strong>L2</strong>ML Kit OCR</div>
+        <div class="ai-layer-chip"><strong>L3</strong>Field parser</div>
+        <div class="ai-layer-chip"><strong>L4</strong>Local summary</div>
+        <div class="ai-layer-chip"><strong>L5</strong>Gemini Nano</div>
+      </div>
     </div>
   </section>
 
@@ -2238,6 +2333,9 @@
           <span class="tag">Python AI Bridge</span>
           <span class="tag">Document Ingestion</span>
           <span class="tag">Privacy-First AI</span>
+          <span class="tag">ML Kit OCR</span>
+          <span class="tag">Gemini Nano</span>
+          <span class="tag">On-device Android AI</span>
         </div>
       </div>
     </div>
