@@ -1397,6 +1397,7 @@
       .ai-grid { grid-template-columns: 1fr; }
       .about-cards { grid-template-columns: 1fr; }
       .project-features { grid-template-columns: 1fr; }
+      .pac-shots { grid-template-columns: 1fr; }
       .hero-stats { gap: 1.5rem; }
 
       /* project cards */
@@ -1446,6 +1447,41 @@
     }
 
     /* Project color variants */
+    .project-card.pac {
+      --card-glow: rgba(251,113,133,0.08);
+      grid-template-columns: 1fr;
+    }
+    .project-card.pac .project-number { color: #fb7185; }
+    .project-card.pac .project-features li::before { color: #fb7185; }
+    .project-card.pac .tech-tag {
+      background: rgba(251,113,133,0.08);
+      border-color: rgba(251,113,133,0.25);
+      color: #fb7185;
+    }
+    .pac-shots {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .pac-shots figure { margin: 0; }
+    .pac-shots img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+    .pac-shots figcaption {
+      margin-top: 0.45rem;
+      font-size: 0.72rem;
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .project-card.pac .project-link { margin-top: 1.25rem; display: inline-block; }
+
     .project-card.tds { --card-glow: rgba(79,158,255,0.07); }
     .project-card.imd { --card-glow: rgba(167,139,250,0.07); }
     .project-card.kiosk { --card-glow: rgba(52,211,153,0.07); }
@@ -2436,6 +2472,41 @@
       <h2 class="section-title reveal">Featured <span>Projects</span></h2>
 
       <div class="projects-grid">
+
+        <div class="project-card pac reveal">
+          <div>
+            <div class="project-number">Featured · Fire TV &amp; Android TV</div>
+            <div class="project-name">Pac-Launcher</div>
+            <div class="project-tagline">A calmer home screen for a Fire Stick and other low-end TVs</div>
+            <p class="project-desc">
+              On a low-end TV, the stock home loads movies, shows, and ads before you can move, so the remote lags on every press.
+              Inspired by <a href="https://github.com/AbhishekKaisar/glassos-tv" target="_blank" rel="noopener noreferrer">GlassOS</a>, I optimized the home for that hardware: less drawing, shorter focus motion, and no catalogue loading on the default screen. It targets Android 14, so newer TVs follow the current privacy rules. The release build is about 175 KB.
+            </p>
+            <ul class="project-features">
+              <li>Smoother remote navigation on Fire Stick and low-end devices</li>
+              <li>Default screen does not load movies, shows, or ads</li>
+              <li>Targets Android 14</li>
+              <li>About 175 KB</li>
+            </ul>
+            <div class="project-tech">
+              <span class="tech-tag">Kotlin</span>
+              <span class="tech-tag">Android TV</span>
+              <span class="tech-tag">Google TV</span>
+              <span class="tech-tag">Fire TV</span>
+            </div>
+            <a class="project-link" href="https://github.com/githubrohitgithub/Pac-Launcher" target="_blank" rel="noopener noreferrer">View on GitHub →</a>
+            <div class="pac-shots">
+              <figure>
+                <img src="assets/pac-launcher-before.jpg" alt="Before: the stock Google TV home, loaded with movies and shows" width="1024" height="576">
+                <figcaption>Before · stock home</figcaption>
+              </figure>
+              <figure>
+                <img src="assets/pac-launcher-after.jpg" alt="After: Pac-Launcher, a calm night scene with a shelf of apps" width="1024" height="576">
+                <figcaption>After · Pac-Launcher</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
 
         <div class="smartq-platform reveal">
           <p class="smartq-platform-label">Enterprise platform · <a href="https://www.thesmartq.com/" target="_blank" rel="noopener noreferrer">SmartQ</a></p>
