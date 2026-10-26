@@ -784,6 +784,38 @@
       color: #4ade80;
     }
 
+    .ai-project-hero.ondeviceai {
+      border-color: rgba(196,181,253,0.32);
+      margin-top: 1.75rem;
+    }
+
+    .ai-project-hero.ondeviceai::before {
+      background: radial-gradient(ellipse at 0% 0%, rgba(196,181,253,0.12), transparent 55%);
+    }
+
+    .ai-project-hero.ondeviceai .first-ai-badge,
+    .ai-project-hero.ondeviceai .ai-project-features li::before,
+    .ai-project-hero.ondeviceai .project-link {
+      color: #c4b5fd;
+    }
+
+    .ai-project-hero.ondeviceai .first-ai-badge {
+      background: rgba(196,181,253,0.12);
+      border-color: rgba(196,181,253,0.35);
+    }
+
+    .ai-project-hero.ondeviceai .ai-project-name {
+      background: linear-gradient(135deg, #fff 20%, #c4b5fd 75%, #ddd6fe 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    .ai-project-hero.ondeviceai .tech-tag {
+      background: rgba(196,181,253,0.08);
+      border-color: rgba(196,181,253,0.22);
+      color: #c4b5fd;
+    }
+
     .project-link {
       display: inline-block;
       margin: 0.25rem 0 1rem;
@@ -1774,6 +1806,7 @@
         <strong style="color:#22d3ee">RoPac</strong> is a fully offline personal assistant for the Mac.
         <strong style="color:#2dd4bf">MediLens</strong> is an on-device Android assistant for prescriptions and lab reports.
         <strong style="color:#4ade80">VisionAssist</strong> is an on-device camera assistant that describes surroundings for visually impaired users.
+        <strong style="color:#c4b5fd">On-device AI</strong> is a phone chatbot that downloads Qwen2.5 0.5B and answers without a server.
       </p>
 
       <article class="ai-project-hero reveal">
@@ -2374,6 +2407,55 @@
         <div class="ai-layer-chip"><strong>L3</strong>ML Kit detect + OCR</div>
         <div class="ai-layer-chip"><strong>L4</strong>Scene interpreter</div>
         <div class="ai-layer-chip"><strong>L5</strong>TextToSpeech</div>
+      </div>
+
+      <article class="ai-project-hero ondeviceai reveal">
+        <div class="ai-project-content">
+          <span class="first-ai-badge">Android · On-device LLM · Chat</span>
+          <h3 class="ai-project-name">On-device AI — Phone Chatbot</h3>
+          <p class="ai-project-tagline">Download Qwen2.5 0.5B, then chat. Replies are generated on the phone.</p>
+          <p class="ai-project-desc">
+            On-device AI is an offline <strong>Kotlin and Jetpack Compose</strong> chatbot.
+            The first screen shows <strong>Qwen2.5 0.5B Instruct</strong> at 521.5 MB.
+            After that download, <strong>MediaPipe LLM Inference</strong> runs the model on the CPU.
+            Prompts and replies stay on the device. The session holds a 1280-token context, and New chat starts a fresh one.
+          </p>
+          <div class="ai-project-highlights">
+            <span class="ai-highlight-pill">NO CLOUD</span>
+            <span class="ai-highlight-pill">Qwen2.5 0.5B</span>
+            <span class="ai-highlight-pill">MediaPipe</span>
+            <span class="ai-highlight-pill">Streaming replies</span>
+          </div>
+          <ul class="ai-project-features">
+            <li>First screen shows the model and its 521.5 MB download size</li>
+            <li>In-app progress, cancel, retry, and delete</li>
+            <li>Chat only after the file size matches the published model</li>
+            <li>MediaPipe tasks-genai 0.10.27 on the CPU</li>
+            <li>Token streaming into the assistant bubble</li>
+            <li>Stop generation without leaving the chat</li>
+            <li>New chat resets the 1280-token session</li>
+            <li>MVVM: screens get state and callbacks, not the ViewModel</li>
+            <li>App-private model file. Network is used only for the download</li>
+          </ul>
+          <a class="project-link" href="https://github.com/githubrohitgithub/OnDeviceAI" target="_blank" rel="noopener noreferrer">github.com/githubrohitgithub/OnDeviceAI</a>
+          <div class="project-tech">
+            <span class="tech-tag">Kotlin</span>
+            <span class="tech-tag">Jetpack Compose</span>
+            <span class="tech-tag">MVVM</span>
+            <span class="tech-tag">MediaPipe</span>
+            <span class="tech-tag">Qwen2.5 0.5B</span>
+            <span class="tech-tag">OkHttp</span>
+            <span class="tech-tag">Navigation</span>
+          </div>
+        </div>
+      </article>
+
+      <div class="ai-arch-layers reveal">
+        <div class="ai-layer-chip"><strong>L1</strong>Compose UI</div>
+        <div class="ai-layer-chip"><strong>L2</strong>Model download</div>
+        <div class="ai-layer-chip"><strong>L3</strong>MediaPipe session</div>
+        <div class="ai-layer-chip"><strong>L4</strong>Qwen2.5 0.5B</div>
+        <div class="ai-layer-chip"><strong>L5</strong>On-device reply</div>
       </div>
     </div>
   </section>
